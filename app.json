@@ -2,7 +2,7 @@
   "id": "f2f94b6a-0cac-429e-9220-c290f6784869",
   "name": "ALProject1",
   "publisher": "Default publisher",
-  "brief": "",
+  "brief": "This is some code in brief",
   "description": "",
   "version": "1.0.0.0",
   "compatibilityId": "1.0.0.0",
@@ -17,7 +17,7 @@
   "platform": "11.0.0.0",
   "application": "11.0.0.0",
   "idRange": {
-    "from": 50100,
-    "to": 50149
+    "from": 123456700,
+    "to": 123456799
   }
 }
