@@ -5,7 +5,7 @@ page 123456701 "Seminar Card"
     PageType = Card;
     SourceTable = Seminar;
     Caption = 'Seminar Card';
-    UsageCategory = Tasks;
+    //UsageCategory = Tasks;
 
     layout
     {

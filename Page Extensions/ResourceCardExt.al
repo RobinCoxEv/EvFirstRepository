@@ -24,9 +24,10 @@ pageextension 123456700 ResourceCardExt extends "Resource Card"
         {
             group("room")
             {
+                Visible = ShowMaxField;
                 field("Maximum Participants";"Maximum Participants")
                 {
-                    Visible = ShowMaxField;
+                    
                 }
             }
         }

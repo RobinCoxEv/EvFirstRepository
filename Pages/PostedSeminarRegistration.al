@@ -1,13 +1,14 @@
-page 123456710 "Seminar Registration"
+page 123456734 "Posted Seminar Registration"
 {
     // CSD1.00 - 2018-01-01 - D. E. Veloper
-    //   Chapter 6 - Lab 3-1
+    //   Chapter 7 - Lab 3
     //     - Created new page
 
-    Caption = 'Seminar Registration';
-    PageType = Card;
-    SourceTable = "Seminar Registration Header";
-    UsageCategory = tasks;
+    Caption = 'Posted Seminar Registration';
+    Editable = false;
+    PageType = Document;
+    SourceTable = "Posted Seminar Reg. Header";
+    UsageCategory=Documents;
 
     layout
     {
@@ -17,12 +18,6 @@ page 123456710 "Seminar Registration"
             {
                 field("No.";"No.")
                 {
-                    AssistEdit=true;
-                    trigger OnAssistEdit();
-                    begin
-                        if AssistEdit(xRec) then
-                          CurrPage.UPDATE;
-                    end;
                 }
                 field("Starting Date";"Starting Date")
                 {
@@ -58,13 +53,13 @@ page 123456710 "Seminar Registration"
                 {
                 }
             }
-            part(SeminarRegistrationLines; "Posted Seminar Reg. Subpage"){
-                Caption = 'Lines';
-                SubPageLink = "Document No." = field ("No.");
+            part(SeminarRegistrationLines;"Posted Seminar Reg. Subpage")
+            {
+                SubPageLink = "Document No."=Field("No.");
             }
             group("Seminar Room")
             {
-                field("Room Resource Code";"Room Resource No.")
+                field("Room Resource No.";"Room Resource No.")
                 {
                 }
                 field("Room Name";"Room Name")
@@ -106,7 +101,12 @@ page 123456710 "Seminar Registration"
         {
             part("Seminar Details FactBox";"Seminar Details FactBox")
             {
-                SubPageLink="No."=field("Seminar No."); 
+                SubPageLink = "No."=Field("Seminar No.");
+            }
+            part("Customer Details FactBox";"Customer Details FactBox")
+            {
+                Provider = SeminarRegistrationLines;
+                SubPageLink = "No."=Field("Bill-to Customer No.");
             }
             systempart("Links";Links)
             {
@@ -128,17 +128,30 @@ page 123456710 "Seminar Registration"
                 {
                     Caption = 'Co&mments';
                     Image = Comment;
-                    RunObject = Page "Seminar Comment Sheet";
+                    RunObject = Page "Seminar Comment List";
                     RunPageLink = "No."=Field("No.");
-                    RunPageView = where("Table Name"=const("Seminar Registration Header"));
+                    RunPageView = where("Table Name"=const("Posted Seminar Reg. Header"));
                 }
                 action("&Charges")
                 {
                     Caption = '&Charges';
                     Image = Costs;
-                    RunObject = Page "Seminar Charges";
+                    RunObject = Page "Posted Seminar Charges";
                     RunPageLink = "Document No."=Field("No.");
                 }
+            }
+        }
+        area(Processing)
+        {
+            action("&Post")
+            {
+                Caption = '&Post';
+                Image = PostDocument;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                ShortcutKey = F9;
+                RunObject = codeunit "Seminar-Post (Yes/No)";
             }
         }
     }

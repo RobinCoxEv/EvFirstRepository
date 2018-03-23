@@ -74,7 +74,7 @@ table 123456701 Seminar
                 if(xRec."Gen. Prod. Posting Group" <>
                 "Gen. Prod. Posting Group") then begin
                     if GenProdPostingGroup.ValidateVatProdPostingGroup
-                (GenProdPostingGroup, "VAT Prod. Posting Group") then
+                (GenProdPostingGroup, "Gen. Prod. Posting Group") then
                         Validate("VAT Prod. Posting Group",
                 GenProdPostingGroup."Def. VAT Prod. Posting Group");
                 end;
